@@ -64,8 +64,21 @@ export default {
     toNext (item, index) {
       this.index = index
       let name = this.toCamelcase(item.name)
-      this.$router.push({ name })
+      this.$router.push({ name }).catch(e => {
+        console.log('你已经在这个路由下了')
+      })
+    },
+    initStar () {
+      let nav_names = this.nav.map(
+        item => this.toCamelcase(item.name)
+      )
+      let index = nav_names.indexOf(this.$route.name)
+      this.index = 0
+      this.index = index
     }
+  },
+  mounted () {
+    this.initStar()
   }
 }
 </script>

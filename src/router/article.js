@@ -4,8 +4,8 @@ export default [
     path: '',
     component: () =>
       import(
-        /* webpackChunkName: "home" */
-        'views/home/Main'
+        /* webpackChunkName: "article" */
+        'views/article/Main'
       )
   }
 ]
