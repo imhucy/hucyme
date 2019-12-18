@@ -37,17 +37,17 @@ export default {
       items: [
         { label: 'Lodash 文档', url: 'https://www.lodashjs.com/docs/latest' },
         { label: 'Element UI', url: 'https://element.eleme.cn/#/zh-CN/component/installation' },
-        { label: 'Jenkins', url: 'http://101.201.42.70:8080/' },
-        { label: '中建华北项目', url: '' },
-        { label: '国祯环保' },
-        { label: '易众标小程序', modal: 'EZhongbiao' },
+        // { label: 'Jenkins', url: 'http://101.201.42.70:8080/' },
+        // { label: '中建华北项目', url: 'http://cscec1bhb.marketbox.cn/bulletin' },
+        // { label: '国祯环保', url: 'xx' },
+        { label: '易众标小程序', modal: 'ShowQrcode', data: { codes: [ '//www.baidu.com/img/bd_logo1.png?where=super' ] } },
         { label: '易众标PC', url: 'https://www.ezhongbiao.com/' },
         { label: '慧聪系列公众号' },
         { label: '经营决策平台' },
         { label: '啄木鸟医疗营销平台' },
-        { label: '数纽知识云' },
-        { label: '数据运营平台' },
-        { label: '厦门可视化大屏', url: 'http://youe.zhongbiao.mobi/client-charts/#/' },
+        { label: '数纽知识云', url: 'http://kc.zhongbiao.mobi/' },
+        { label: '数据运营平台', url: 'http://eagle.zhongbiao.mobi/' },
+        { label: '厦门可视化大屏', url: 'http://youe.zhongbiao.mobi/client-charts/#/', bak_url: 'http://117.29.164.46:8081/client-charts/#/' },
         { label: '福州台江区政策服务平台' },
         { label: '福州市12345热线数据研判平台' },
         { label: '中建一局报告自动化' }
@@ -72,7 +72,7 @@ export default {
       if (item.url) {
         this.openNewTab(item.url)
       } else if (item.modal) {
-        this.$modal(item.modal)
+        this.$modal(item.modal, { data: item.data }).then(x => x)
       }
     },
     openNewTab (url) {
