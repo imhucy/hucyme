@@ -19,11 +19,23 @@
               :style="box_style(item, page, i)"
               @click="clickHandler(item, page, i)"
             >
-              <i v-if="item.url" class="el-icon-link"></i> {{ item.label }}
+              <i v-if="item.url" class="el-icon-link mr10"></i>
+              <img
+                v-if="item.modal"
+                class="mr10"
+                src="~@/assets/img/icon_modal.png"
+              />
+              {{ item.label }}
             </div>
           </div>
         </transition-group>
       </div>
+    </div>
+    <div class="home-main-arrow arrow-left" @click="prevPage">
+      <i class="el-icon-arrow-left"></i>
+    </div>
+    <div class="home-main-arrow arrow-right" @click="nextPage">
+      <i class="el-icon-arrow-right"></i>
     </div>
   </div>
 </template>
@@ -75,7 +87,7 @@ export default {
     }
   },
   computed: {
-    render_items: (vm) => chunk(vm.items.concat(vm.items).concat(vm.items), 10),
+    render_items: (vm) => chunk(vm.items, 10),
     page_total: (vm) => vm.render_items.length,
     // 计算滑动距离
     panel_transform: (vm) => {
@@ -113,6 +125,16 @@ export default {
       1000,
       { leading: true, trailing: false }
     ),
+    nextPage () {
+      if (this.page < this.page_total - 1) {
+        this.page += 1
+      }
+    },
+    prevPage () {
+      if (this.page > 0) {
+        this.page -= 1
+      }
+    },
     box_style (item, page, i) {
       let cache_key = [item.label, page, i].join('_')
       box_style_cache = box_style_cache || {}
@@ -128,9 +150,39 @@ export default {
 }
 </script>
 <style lang="scss">
+.mr10 {
+  margin-right: 10px;
+}
 $padding: 15px;
 $height: 200px;
 .home-main {
+  position: relative;
+  .home-main-arrow {
+    width: 100px;
+    height: 100px;
+    background: rgba($color: #000000, $alpha: 0.1);
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 1000;
+    transition: all 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 50px;
+    cursor: pointer;
+    &:hover {
+      background: rgba($color: #000000, $alpha: 0.8);
+    }
+
+    &.arrow-left {
+      left: 0;
+    }
+    &.arrow-right {
+      right: 0;
+    }
+  }
   .box-enter-active,
   .box-leave-active,
   .box-move {
