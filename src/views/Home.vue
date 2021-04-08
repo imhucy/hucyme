@@ -1,5 +1,5 @@
 <template>
-  <div class="route-view-container" style="padding-top: 60px;">
+  <div class="route-view-container" style="padding-top: 60px">
     <hucy-header></hucy-header>
     <router-view></router-view>
   </div>
@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'home'
-}
+  name: "home",
+};
 </script>

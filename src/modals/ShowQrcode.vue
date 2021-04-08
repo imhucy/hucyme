@@ -1,11 +1,13 @@
 <template>
-  <el-dialog class="show-qrcode-dialog" width="800px" :before-close="beforeClose" :visible.sync="visible">
+  <el-dialog
+    class="show-qrcode-dialog"
+    width="800px"
+    :before-close="beforeClose"
+    :visible.sync="visible"
+  >
     <div slot="title">扫码查看项目</div>
     <div class="qrcodes">
-      <div class="qrcode"
-        v-for="(code, index) in codes"
-        :key="index"
-      >
+      <div class="qrcode" v-for="(code, index) in codes" :key="index">
         <img :src="code" />
       </div>
     </div>
@@ -18,35 +20,35 @@
 
 <script>
 export default {
-  name: 'ShowQrcode',
-  data () {
+  name: "ShowQrcode",
+  data() {
     return {
       visible: true,
-      codes: []
-    }
+      codes: [],
+    };
   },
   methods: {
-    confirm () {
-      this.$emit('confirm')
-      this.visible = false
-      this.afterClose()
+    confirm() {
+      this.$emit("confirm");
+      this.visible = false;
+      this.afterClose();
     },
-    cancel () {
-      this.$emit('cancel')
-      this.visible = false
-      this.afterClose()
+    cancel() {
+      this.$emit("cancel");
+      this.visible = false;
+      this.afterClose();
     },
-    afterClose () {
-      this.$el.parentNode.removeChild(this.$el)
-      this.$destroy()
+    afterClose() {
+      this.$el.parentNode.removeChild(this.$el);
+      this.$destroy();
     },
-    beforeClose (done) {
-      this.cancel()
-      done()
-    }
+    beforeClose(done) {
+      this.cancel();
+      done();
+    },
   },
-  mounted () {
-    this.visible = true
-  }
-}
+  mounted() {
+    this.visible = true;
+  },
+};
 </script>

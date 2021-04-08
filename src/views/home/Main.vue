@@ -40,51 +40,51 @@
   </div>
 </template>
 <script>
-import { chunk, throttle } from 'lodash'
-let box_style_cache = {}
+import { chunk, throttle } from "lodash";
+let box_style_cache = {};
 export default {
-  data () {
+  data() {
     return {
       page: 0,
       items: [
-        { label: 'Lodash 文档', url: 'https://www.lodashjs.com/docs/latest' },
+        { label: "Lodash 文档", url: "https://www.lodashjs.com/docs/latest" },
         {
-          label: 'Element UI',
-          url: 'https://element.eleme.cn/#/zh-CN/component/installation'
+          label: "Element UI",
+          url: "https://element.eleme.cn/#/zh-CN/component/installation",
         },
         {
-          label: 'Echarts 配置项文档',
-          url: 'https://echarts.apache.org/zh/option.html'
+          label: "Echarts 配置项文档",
+          url: "https://echarts.apache.org/zh/option.html",
         },
         {
-          label: 'Echarts Gallery',
+          label: "Echarts Gallery",
           url:
-            'https://www.makeapie.com/explore.html#sort=rank~timeframe=all~author=all'
+            "https://www.makeapie.com/explore.html#sort=rank~timeframe=all~author=all",
         },
         // { label: 'Jenkins', url: 'http://101.201.42.70:8080/' },
         // { label: '中建华北项目', url: 'http://cscec1bhb.marketbox.cn/bulletin' },
         // { label: '国祯环保', url: 'xx' },
         {
-          label: '易众标小程序',
-          modal: 'ShowQrcode',
-          data: { codes: ['//www.baidu.com/img/bd_logo1.png?where=super'] }
+          label: "易众标小程序",
+          modal: "ShowQrcode",
+          data: { codes: ["//www.baidu.com/img/bd_logo1.png?where=super"] },
         },
-        { label: '易众标PC', url: 'https://www.ezhongbiao.com/' },
-        { label: '慧聪系列公众号' },
-        { label: '经营决策平台' },
-        { label: '啄木鸟医疗营销平台' },
-        { label: '数纽知识云', url: 'http://kc.zhongbiao.mobi/' },
-        { label: '数据运营平台', url: 'http://eagle.zhongbiao.mobi/' },
+        { label: "易众标PC", url: "https://www.ezhongbiao.com/" },
+        { label: "慧聪系列公众号" },
+        { label: "经营决策平台" },
+        { label: "啄木鸟医疗营销平台" },
+        { label: "数纽知识云", url: "http://kc.zhongbiao.mobi/" },
+        { label: "数据运营平台", url: "http://eagle.zhongbiao.mobi/" },
         {
-          label: '厦门可视化大屏',
-          url: 'http://youe.zhongbiao.mobi/client-charts/#/',
-          bak_url: 'http://117.29.164.46:8081/client-charts/#/'
+          label: "厦门可视化大屏",
+          url: "http://youe.zhongbiao.mobi/client-charts/#/",
+          bak_url: "http://117.29.164.46:8081/client-charts/#/",
         },
-        { label: '福州台江区政策服务平台' },
-        { label: '福州市12345热线数据研判平台' },
-        { label: '中建一局报告自动化' }
-      ]
-    }
+        { label: "福州台江区政策服务平台" },
+        { label: "福州市12345热线数据研判平台" },
+        { label: "中建一局报告自动化" },
+      ],
+    };
   },
   computed: {
     render_items: (vm) => chunk(vm.items, 10),
@@ -92,62 +92,62 @@ export default {
     // 计算滑动距离
     panel_transform: (vm) => {
       return {
-        width: vm.page_total * 100 + '%',
-        transform: `translateX(-${(100 / vm.page_total) * vm.page + '%'})`
-      }
+        width: vm.page_total * 100 + "%",
+        transform: `translateX(-${(100 / vm.page_total) * vm.page + "%"})`,
+      };
     },
     // 每个panel的宽度
-    panel_width: (vm) => ({ width: 100 / vm.page_total + '%' })
+    panel_width: (vm) => ({ width: 100 / vm.page_total + "%" }),
   },
   methods: {
-    clickHandler (item, page, i) {
+    clickHandler(item /* , page, i */) {
       if (item.url) {
-        this.openNewTab(item.url)
+        this.openNewTab(item.url);
       } else if (item.modal) {
-        this.$modal(item.modal, { data: item.data }).then((x) => x)
+        this.$modal(item.modal, { data: item.data }).then((x) => x);
       }
     },
-    openNewTab (url) {
-      let elem = document.createElement('a')
-      elem.href = url
-      elem.target = '_blank'
-      elem.click()
-      elem.remove()
+    openNewTab(url) {
+      let elem = document.createElement("a");
+      elem.href = url;
+      elem.target = "_blank";
+      elem.click();
+      elem.remove();
     },
     mouseWheelHandler: throttle(
       function (evt) {
         if (evt.wheelDelta < 0 && this.page < this.page_total - 1) {
-          this.page++
+          this.page++;
         } else if (evt.wheelDelta >= 0 && this.page > 0) {
-          this.page--
+          this.page--;
         }
       },
       1000,
       { leading: true, trailing: false }
     ),
-    nextPage () {
+    nextPage() {
       if (this.page < this.page_total - 1) {
-        this.page += 1
+        this.page += 1;
       }
     },
-    prevPage () {
+    prevPage() {
       if (this.page > 0) {
-        this.page -= 1
+        this.page -= 1;
       }
     },
-    box_style (item, page, i) {
-      let cache_key = [item.label, page, i].join('_')
-      box_style_cache = box_style_cache || {}
+    box_style(item, page, i) {
+      let cache_key = [item.label, page, i].join("_");
+      box_style_cache = box_style_cache || {};
       if (!box_style_cache[cache_key]) {
         box_style_cache[cache_key] =
-          '#' + (~~(Math.random() * (1 << 24))).toString(16)
+          "#" + (~~(Math.random() * (1 << 24))).toString(16);
       }
       return {
-        'background-color': box_style_cache[cache_key]
-      }
-    }
-  }
-}
+        "background-color": box_style_cache[cache_key],
+      };
+    },
+  },
+};
 </script>
 <style lang="scss">
 .mr10 {

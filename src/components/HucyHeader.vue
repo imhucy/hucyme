@@ -4,15 +4,15 @@
   </div>
 </template>
 <script>
-import nav from '../mock/nav'
+import nav from "../mock/nav";
 export default {
-  name: 'HucyHeader',
-  data () {
+  name: "HucyHeader",
+  data() {
     return {
-      nav
-    }
-  }
-}
+      nav,
+    };
+  },
+};
 </script>
 <style lang="scss">
 .hucy-header {

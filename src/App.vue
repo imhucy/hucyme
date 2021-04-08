@@ -6,9 +6,9 @@
 
 <script>
 export default {
-  name: 'app'
-}
+  name: "app",
+};
 </script>
 <style lang="scss">
-@import '~scss/common-style';
+@import "~scss/common-style";
 </style>

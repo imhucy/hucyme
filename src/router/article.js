@@ -1,11 +1,11 @@
 export default [
   {
-    name: 'Article',
-    path: '',
+    name: "Article",
+    path: "",
     component: () =>
       import(
         /* webpackChunkName: "home" */
-        'views/home/Main'
-      )
-  }
-]
+        "views/home/Main"
+      ),
+  },
+];

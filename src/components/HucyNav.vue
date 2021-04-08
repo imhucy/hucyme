@@ -10,9 +10,7 @@
     >
       {{ item.label }}
     </div>
-    <div class="star-container"
-      :style="star_style"
-    >
+    <div class="star-container" :style="star_style">
       <div class="star"></div>
     </div>
   </div>
@@ -22,52 +20,52 @@ export default {
   props: {
     nav: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   computed: {
-    star_style () {
-      let items = this.$refs.navItems
-      let i = this.index
+    star_style() {
+      let items = this.$refs.navItems;
+      let i = this.index;
       if (items && i) {
-        let top = (items[i].offsetTop - 10)
-        let bottom = (items[i].offsetTop + items[i].offsetHeight - 10)
+        let top = items[i].offsetTop - 10;
+        let bottom = items[i].offsetTop + items[i].offsetHeight - 10;
         return {
-          left: (items[i].offsetLeft + items[i].offsetWidth / 2 - 10) + 'px',
-          top: (i % 2 ? top : bottom) + 'px'
-        }
+          left: items[i].offsetLeft + items[i].offsetWidth / 2 - 10 + "px",
+          top: (i % 2 ? top : bottom) + "px",
+        };
       } else {
-        return {}
+        return {};
       }
-    }
+    },
   },
-  data () {
+  data() {
     return {
-      index: 0
-    }
+      index: 0,
+    };
   },
   methods: {
-    isActive (item, index) {
-      if (item.name === 'home' && this.$route.path === '/') {
-        this.index = index
-        return true
+    isActive(item, index) {
+      if (item.name === "home" && this.$route.path === "/") {
+        this.index = index;
+        return true;
       }
-      let isActive = this.$route.path.match(new RegExp(item.name))
+      let isActive = this.$route.path.match(new RegExp(item.name));
       if (isActive) {
-        this.index = index
+        this.index = index;
       }
-      return isActive
+      return isActive;
     },
-    toCamelcase (str) {
-      return str[0].toUpperCase() + str.substr(1)
+    toCamelcase(str) {
+      return str[0].toUpperCase() + str.substr(1);
     },
-    toNext (item, index) {
-      this.index = index
-      let name = this.toCamelcase(item.name)
-      this.$router.push({ name })
-    }
-  }
-}
+    toNext(item, index) {
+      this.index = index;
+      let name = this.toCamelcase(item.name);
+      this.$router.push({ name });
+    },
+  },
+};
 </script>
 <style lang="scss">
 .hucy-nav-container {
@@ -89,16 +87,20 @@ export default {
 $star-color: #ff0;
 $size: 20px;
 @keyframes circle {
-  0% { transform: rotate(360deg) }
+  0% {
+    transform: rotate(360deg);
+  }
   // 20% { transform: rotate(200deg) }
   // 80% { transform: rotate(160deg) }
-  100% { transform: rotate(0) }
+  100% {
+    transform: rotate(0);
+  }
 }
 .star-container {
   position: absolute;
   top: 12px;
   left: -134px;
-  transition: all .6s;
+  transition: all 0.6s;
   animation: circle 1.2s infinite linear;
   // background: red;
   width: $size;
@@ -116,7 +118,7 @@ $size: 20px;
   border-right: $size / 2 solid transparent;
   border-bottom: $size * 7 / 20 solid $star-color;
   // animation: circle 1.5s infinite linear;
-  content: '';
+  content: "";
 }
 .star {
   top: 0;
