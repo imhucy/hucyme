@@ -8,6 +8,34 @@ body,
   padding: 0;
 }
 html { background-color: #ddd; }
+.list {
+  // background: black;
+  width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 200px;
+    overflow-anchor: none;
+  .list-item {
+    overflow-anchor: none;
+    height: 200px;
+    margin-top: 20px;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 15px;
+    transition: all 0.4s;
+    cursor: pointer;
+    opacity: 0;
+    transform: translate3d(0, 200px, 0);
+    animation: slide-up-in 0.4s ease-out forwards;
+    &:hover {
+      box-shadow: 0 0 10px 10px #999;
+    }
+    @for $i from 1 through 16 {
+      &:nth-child(#{$i}) {
+        animation-delay: ($i - 1) * 0.05s;
+      }
+    }
+  }
+}
 // html { background-color: #fff }
 // body { background-color: #eee }
 // #app { background-color: #ddd }

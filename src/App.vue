@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <div class="route-view-container" style="padding-top: 60px">
+      <hucy-header></hucy-header>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
