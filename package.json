@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build & mv ./dist/index.html ../killer0124.github.io/index.html",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.1",
+    "github-markdown-css": "^4.0.0",
     "qiniu-webpack-plugin": "^0.4.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

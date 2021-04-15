@@ -18,6 +18,12 @@ const routes = [
     name: "Article",
     component: () => import(/* webpackChunkName: "article" */ "views/Article"),
   },
+  {
+    path: "/article/:id",
+    name: "ArticleDetail",
+    component: () =>
+      import(/* webpackChunkName: "article" */ "views/ArticleDetail"),
+  },
   // about
   {
     path: "/about",
@@ -32,7 +38,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes,
 });

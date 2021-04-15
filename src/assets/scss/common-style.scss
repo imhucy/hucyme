@@ -7,13 +7,15 @@ body,
   margin: 0;
   padding: 0;
 }
-html { background-color: #ddd; }
+html {
+  background-color: #ddd;
+}
 .list {
   // background: black;
   width: 1200px;
   margin: 0 auto;
   padding-bottom: 200px;
-    overflow-anchor: none;
+  overflow-anchor: none;
   .list-item {
     overflow-anchor: none;
     height: 200px;
@@ -34,6 +36,16 @@ html { background-color: #ddd; }
         animation-delay: ($i - 1) * 0.05s;
       }
     }
+  }
+}
+@keyframes slide-up-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 200px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 // html { background-color: #fff }
